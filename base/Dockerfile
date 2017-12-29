@@ -29,6 +29,12 @@ ADD etc/start_jbpm-wb.sh $JBOSS_HOME/bin/start_jbpm-wb.sh
 RUN chown jboss:jboss $JBOSS_HOME/standalone/deployments/*
 RUN chown jboss:jboss $JBOSS_HOME/bin/start_jbpm-wb.sh
 
+# ENABLE A GODDAMN ADMIN ACCOUNT ("admin:admin")
+ADD etc/application-roles.properties $JBOSS_HOME/standalone/configuration/application-roles.properties
+ADD etc/application-users.properties $JBOSS_HOME/standalone/configuration/application-users.properties
+RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/application-roles.properties
+RUN chown jboss:jboss $JBOSS_HOME/standalone/configuration/application-users.properties
+
 ####### CUSTOM JBOSS USER ############
 # Switchback to jboss user
 USER jboss
